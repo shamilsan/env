@@ -52,7 +52,7 @@ Development environment for building smart contracts.
 # Contents
 
 - Based on Ubuntu 22.04 LTS
-- Rust toolchain: `v1.69` (`stable`) and `1.71.0-nightly` (`2023-04-13`)
+- Rust toolchain: `v1.69` (`stable`) and `1.70.0-nightly` (`2023-04-13`)
 - Node.js: `v18.16`
 - Yarn: `v1.22`
 - Gear node binary: `v0.1.4-5c685d0`
@@ -61,8 +61,21 @@ Development environment for building smart contracts.
 
 ```shell
 git clone https://github.com/gear-dapps/gear-env.git
-docker build -t gear-env gear-env/docker
+cd gear-env
+```
+
+Linux:
+
+```shell
+docker build -t gear-env docker
 docker run --rm --name gear-env -itd gear-env bash
+```
+
+macOS:
+
+```shell
+docker build --platform linux/amd64 -t gear-env docker
+docker run --rm --name gear-env --platform linux/amd64 -itd gear-env bash
 ```
 
 # License
