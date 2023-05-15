@@ -15,13 +15,13 @@ Development environment for building smart contracts.
     Linux:
 
     ```shell
-    docker run --rm --name gear-env -itd gear-env bash
+    docker run --rm --name gear-env -itd ghcr.io/gear-dapps/gear-env:latest bash
     ```
 
     macOS:
 
     ```shell
-    docker run --rm --name gear-env --platform linux/amd64 -itd gear-env bash
+    docker run --rm --name gear-env --platform linux/amd64 -itd ghcr.io/gear-dapps/gear-env:latest bash
     ```
 
 2. Prepare smart contract for building (here we use [`app`](https://github.com/gear-dapps/app) for example):
@@ -37,7 +37,7 @@ Development environment for building smart contracts.
     docker exec -itw /root/app gear-env cargo build --release
     ```
 
--. Stop the Docker container after using:
+4. Stop the Docker container after using:
 
     ```shell
     docker stop gear-env
@@ -51,18 +51,12 @@ Development environment for building smart contracts.
 - Yarn: `v1.22`
 - Gear node binary: `v0.1.4-5c685d0`
 
-# Build Docker image locally
-
-## On macOS
+# Build and run Docker container locally
 
 ```shell
-docker build --platform linux/amd64 --ulimit nofile=1024000:1024000 -t gear-env docker
-```
-
-## On Linux
-
-```shell
-docker build --ulimit nofile=1024000:1024000 -t gear-env docker
+git clone https://github.com/gear-dapps/gear-env.git
+docker build -t gear-env gear-env/docker
+docker run --rm --name gear-env -itd gear-env bash
 ```
 
 # License
