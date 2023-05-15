@@ -26,3 +26,9 @@ RUN npm install --global yarn
 
 # Install Gear node binary
 RUN curl -fsSL https://get.gear.rs/vara-testnet-x86_64-unknown-linux-gnu.tar.xz | tar -xJC /usr/bin
+
+# Configure cargo
+RUN echo '[registries.crates-io]\nprotocol = "sparse"\n' > /root/.cargo/config.toml
+
+# Install dev-utils
+RUN apt install -y build-essential

@@ -56,13 +56,13 @@ Development environment for building smart contracts.
 ## On macOS
 
 ```shell
-docker build --platform linux/amd64 -t gear-env docker
+docker build --platform linux/amd64 --ulimit nofile=1024000:1024000 -t gear-env docker
 ```
 
 ## On Linux
 
 ```shell
-docker build docker -t gear-env
+docker build --ulimit nofile=1024000:1024000 -t gear-env docker
 ```
 
 # License

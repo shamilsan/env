@@ -26,4 +26,5 @@ jobs:
         with:
           context: docker
           push: true
+          ulimit: nofile=1024000:1024000
           tags: ghcr.io/gear-dapps/gear-env:latest,ghcr.io/gear-dapps/gear-env:1.0
