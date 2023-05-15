@@ -37,7 +37,13 @@ Development environment for building smart contracts.
     docker exec -itw /root/app gear-env cargo build --release
     ```
 
-4. Stop the Docker container after using:
+4. Copy build artifacts back to the local machine:
+
+    ```shell
+    docker cp gear-env:/root/app/target/wasm32-unknown-unknown/*.wasm ./
+    ```
+
+5. Stop the Docker container after using:
 
     ```shell
     docker stop gear-env
