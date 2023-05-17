@@ -29,6 +29,8 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: docker
+          push: true
+          tags: ghcr.io/gear-dapps/gear-env:pr-${{ github.event.number }}
 
       - name: Build and push the image
         if: github.event_name != 'pull_request'
@@ -37,3 +39,29 @@ jobs:
           context: docker
           push: true
           tags: ghcr.io/gear-dapps/gear-env:latest,ghcr.io/gear-dapps/gear-env:1.0
+
+  test:
+    needs: build
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    container: ghcr.io/gear-dapps/gear-env:pr-${{ github.event.number }}
+    env:
+      CARGO_TERM_COLOR: always
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          repository: gear-dapps/app
+
+      - name: Run `app` tests
+        run: make full-test
+
+      - name: Build `app`
+        run: make build
+
+      - name: Remove PR's Docker image
+        uses: actions/delete-package-versions@v4
+        with:
+          package-name: gear-env
+          package-type: container
+          package-version-ids: pr-${{ github.event.number }}
