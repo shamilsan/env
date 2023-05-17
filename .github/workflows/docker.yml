@@ -17,18 +17,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Log in
+      - name: Log in to registry
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build the image
+      - name: Build and push the PR's image
         if: github.event_name == 'pull_request'
         uses: docker/build-push-action@v4
         with:
           context: docker
+          push: true
+          tags: ghcr.io/gear-dapps/gear-env:pr-${{ github.event.number }}
 
       - name: Build and push the image
         if: github.event_name != 'pull_request'
@@ -37,3 +39,22 @@ jobs:
           context: docker
           push: true
           tags: ghcr.io/gear-dapps/gear-env:latest,ghcr.io/gear-dapps/gear-env:1.0
+
+  test:
+    needs: build
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    container: ghcr.io/gear-dapps/gear-env:pr-${{ github.event.number }}
+    env:
+      CARGO_TERM_COLOR: always
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          repository: gear-dapps/app
+
+      - name: Run `app` tests
+        run: make full-test
+
+      - name: Build the `app`
+        run: make build

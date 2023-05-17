@@ -12,13 +12,13 @@ Development environment for building smart contracts.
     docker pull ghcr.io/gear-dapps/gear-env:latest
     ```
 
-    Linux:
+    Linux / macOS x86:
 
     ```shell
     docker run --rm --name gear-env -itd ghcr.io/gear-dapps/gear-env:latest bash
     ```
 
-    macOS:
+    macOS M-series (ARM):
 
     ```shell
     docker run --rm --name gear-env --platform linux/amd64 -itd ghcr.io/gear-dapps/gear-env:latest bash
@@ -40,7 +40,7 @@ Development environment for building smart contracts.
 4. Copy build artifacts back to the local machine:
 
     ```shell
-    docker cp gear-env:/root/app/target/wasm32-unknown-unknown/*.wasm ./
+    docker cp gear-env:/root/app/target/wasm32-unknown-unknown/release/. ./
     ```
 
 5. Stop the Docker container after using:
@@ -64,14 +64,14 @@ git clone https://github.com/gear-dapps/gear-env.git
 cd gear-env
 ```
 
-Linux:
+Linux / macOS x86:
 
 ```shell
 docker build -t gear-env docker
 docker run --rm --name gear-env -itd gear-env bash
 ```
 
-macOS:
+macOS M-series (ARM):
 
 ```shell
 docker build --platform linux/amd64 -t gear-env docker
