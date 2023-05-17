@@ -22,6 +22,7 @@ RUN ln -s /root/.rustup/toolchains/nightly-$NIGHTLY_TOOLCHAIN_VERSION-$(eval ${T
 RUN rm -f rustup-init.sh
 ENV CARGO_NET_GIT_FETCH_WITH_CLI=true
 ENV CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
+ENV RUSTUP_HOME=/root/.rustup
 
 # Install Node.js and required packages
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -

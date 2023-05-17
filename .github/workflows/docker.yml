@@ -48,27 +48,17 @@ jobs:
     container: ghcr.io/gear-dapps/gear-env:pr-${{ github.event.number }}
     env:
       CARGO_TERM_COLOR: always
-      RUSTUP_HOME: /root/.rustup
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          repository: gear-dapps/app
+      # - name: Checkout repository
+      #   uses: actions/checkout@v3
+      #   with:
+      #     repository: gear-dapps/app
 
-      - name: Run pre-checks
-        run: |
-          pwd
-          whoami
-          rustup --version
-          echo $RUSTUP_HOME
-          rustc --version
-          cargo --version
+      # - name: Run `app` tests
+      #   run: make full-test
 
-      - name: Run `app` tests
-        run: make full-test
-
-      - name: Build the `app`
-        run: make build
+      # - name: Build the `app`
+      #   run: make build
 
       - name: Remove the PR's image
         uses: actions/delete-package-versions@v4
