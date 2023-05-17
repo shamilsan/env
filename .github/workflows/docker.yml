@@ -9,7 +9,6 @@ on:
 
 jobs:
   build:
-    if: false # FIXME: Remove
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -42,27 +41,20 @@ jobs:
           tags: ghcr.io/gear-dapps/gear-env:latest,ghcr.io/gear-dapps/gear-env:1.0
 
   test:
-    # needs: build # FIXME: Uncomment
+    needs: build
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     container: ghcr.io/gear-dapps/gear-env:pr-${{ github.event.number }}
     env:
       CARGO_TERM_COLOR: always
     steps:
-      # - name: Checkout repository
-      #   uses: actions/checkout@v3
-      #   with:
-      #     repository: gear-dapps/app
-
-      # - name: Run `app` tests
-      #   run: make full-test
-
-      # - name: Build the `app`
-      #   run: make build
-
-      - name: Remove the PR's image
-        uses: actions/delete-package-versions@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
-          package-name: gear-env
-          package-type: container
-          package-version-ids: pr-${{ github.event.number }}
+          repository: gear-dapps/app
+
+      - name: Run `app` tests
+        run: make full-test
+
+      - name: Build the `app`
+        run: make build
