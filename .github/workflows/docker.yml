@@ -75,7 +75,7 @@ jobs:
 
       - name: List versions
         run: |
-          rustc --version
+          rustc +stable --version
           rustc +nightly --version
           node --version
           yarn --version

@@ -51,11 +51,21 @@ Development environment for building smart contracts.
 
 # Contents
 
+## Latest
+
 - Based on Ubuntu 22.04 LTS
-- Rust toolchain: `v1.69` (`stable`) and `1.70.0-nightly` (`2023-04-25`)
+- Rust toolchain: `v1.70` (`stable`) and `1.71.0-nightly` (`2023-04-25`)
 - Node.js: `v18.16`
 - Yarn: `v1.22`
 - Gear node binary: `v0.1.6-78dfa07`
+
+## v1.0 (latest stable)
+
+- Based on Ubuntu 22.04 LTS
+- Rust toolchain: `v1.69` (`stable`) and `1.70.0-nightly` (`2023-03-14`)
+- Node.js: `v18.16`
+- Yarn: `v1.22`
+- Gear node binary: `v0.1.4-5c685d0`
 
 # Build and run Docker container locally
 
