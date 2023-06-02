@@ -54,10 +54,11 @@ Development environment for building smart contracts.
 ## Latest
 
 - Based on Ubuntu 22.04 LTS
-- Rust toolchain: `v1.70` (`stable`) and `1.71.0-nightly` (`2023-04-25`)
-- Node.js: `v18.16`
-- Yarn: `v1.22`
-- Gear node binary: `v0.1.6-78dfa07`
+- Stable Rust toolchain: `v1.70.0` (`90c541806 2023-05-31`)
+- Nightly Rust toolchain: `1.71.0-nightly` (`f5559e338 2023-04-24`)
+- Node.js: `v18.16.0`
+- Yarn: `v1.22.19`
+- Gear node binary: `v0.1.6-78dfa07ed34`
 
 ## v1.0 (latest stable)
 
