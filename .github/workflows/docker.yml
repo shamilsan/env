@@ -9,18 +9,7 @@ on:
     tags: ["*"]
 
 jobs:
-  get_version:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && !endsWith(github.ref, 'master')
-    steps:
-      - id: version
-        run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
-
-      - name: Show version
-        run: echo ${{ steps.version.outputs.VERSION }}
-
   build:
-    needs: get_version
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -51,6 +40,15 @@ jobs:
           context: docker
           push: true
           tags: ghcr.io/gear-dapps/gear-env:latest
+
+      - name: Get version from tag
+        if: github.event_name == 'push' && !endsWith(github.ref, 'master')
+        id: version
+        run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
+
+      - name: Show version
+        if: github.event_name == 'push' && !endsWith(github.ref, 'master')
+        run: echo ${{ steps.version.outputs.VERSION }}
 
       - name: Build and push the stable image (tag)
         if: github.event_name == 'push' && !endsWith(github.ref, 'master')
