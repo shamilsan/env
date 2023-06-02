@@ -3,9 +3,10 @@ name: Docker
 on:
   pull_request:
     branches: [master]
+
   push:
     branches: [master]
-  workflow_dispatch:
+    tags: ["*"]
 
 jobs:
   build:
@@ -32,13 +33,32 @@ jobs:
           push: true
           tags: ghcr.io/gear-dapps/gear-env:pr-${{ github.event.number }}
 
-      - name: Build and push the image
-        if: github.event_name != 'pull_request'
+      - name: Build and push the latest image (master)
+        if: github.event_name == 'push' && endsWith(github.ref, 'master')
         uses: docker/build-push-action@v4
         with:
           context: docker
           push: true
-          tags: ghcr.io/gear-dapps/gear-env:latest,ghcr.io/gear-dapps/gear-env:1.0
+          tags: ghcr.io/gear-dapps/gear-env:latest
+
+      - name: Get version from tag
+        if: github.event_name == 'push' && !endsWith(github.ref, 'master')
+        id: version
+        run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
+
+      - name: Show version
+        if: github.event_name == 'push' && !endsWith(github.ref, 'master')
+        run: echo ${{ steps.version.outputs.VERSION }}
+
+      - name: Build and push the stable image (tag)
+        if: github.event_name == 'push' && !endsWith(github.ref, 'master')
+        uses: docker/build-push-action@v4
+        with:
+          context: docker
+          push: true
+          tags: >-
+            ghcr.io/gear-dapps/gear-env:stable,
+            ghcr.io/gear-dapps/gear-env:${{ steps.version.outputs.VERSION }}
 
   test:
     needs: build
@@ -52,6 +72,14 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: gear-dapps/app
+
+      - name: List versions
+        run: |
+          rustc +stable --version
+          rustc +nightly --version
+          node --version
+          yarn --version
+          gear --version
 
       - name: Run `app` tests
         run: make full-test
