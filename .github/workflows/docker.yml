@@ -57,8 +57,8 @@ jobs:
           context: docker
           push: true
           tags: >-
-            ghcr.io/gear-dapps/gear-env:stable,
-            ghcr.io/gear-dapps/gear-env:${{ steps.version.outputs.VERSION }}
+            ghcr.io/gear-dapps/gear-env:${{ steps.version.outputs.VERSION }},
+            ghcr.io/gear-dapps/gear-env:stable
 
   test:
     needs: build
