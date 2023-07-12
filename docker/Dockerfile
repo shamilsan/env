@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM --platform=linux/amd64 ubuntu:22.04
 
 ARG NIGHTLY_TOOLCHAIN_VERSION=2023-04-25
 WORKDIR /root

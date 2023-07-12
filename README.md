@@ -9,25 +9,25 @@ Development environment for building smart contracts.
 1. Pull and run Docker container:
 
     ```shell
-    docker pull ghcr.io/gear-dapps/gear-env:stable
+    docker pull ghcr.io/gear-foundation/gear-env:stable
     ```
 
     Linux / macOS x86:
 
     ```shell
-    docker run --rm --name gear-env -itd ghcr.io/gear-dapps/gear-env:stable bash
+    docker run --rm --name gear-env -itd ghcr.io/gear-foundation/gear-env:stable bash
     ```
 
     macOS M-series (ARM):
 
     ```shell
-    docker run --rm --name gear-env --platform linux/amd64 -itd ghcr.io/gear-dapps/gear-env:stable bash
+    docker run --rm --name gear-env --platform linux/amd64 -itd ghcr.io/gear-foundation/gear-env:stable bash
     ```
 
-2. Prepare smart contract for building (here we use [`app`](https://github.com/gear-dapps/app) for example):
+2. Prepare smart contract for building (here we use [`app`](https://github.com/gear-foundation/app) for example):
 
     ```shell
-    git clone https://github.com/gear-dapps/app.git --depth 1
+    git clone https://github.com/gear-foundation/app.git --depth 1
     docker cp ./app gear-env:/root
     ```
 
@@ -80,7 +80,7 @@ Development environment for building smart contracts.
 # Build and run Docker container locally
 
 ```shell
-git clone https://github.com/gear-dapps/gear-env.git
+git clone https://github.com/gear-foundation/gear-env.git
 cd gear-env
 ```
 
