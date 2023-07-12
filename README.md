@@ -9,25 +9,25 @@ Development environment for building smart contracts.
 1. Pull and run Docker container:
 
     ```shell
-    docker pull ghcr.io/gear-dapps/gear-env:stable
+    docker pull ghcr.io/gear-foundation/gear-env:stable
     ```
 
     Linux / macOS x86:
 
     ```shell
-    docker run --rm --name gear-env -itd ghcr.io/gear-dapps/gear-env:stable bash
+    docker run --rm --name gear-env -itd ghcr.io/gear-foundation/gear-env:stable bash
     ```
 
     macOS M-series (ARM):
 
     ```shell
-    docker run --rm --name gear-env --platform linux/amd64 -itd ghcr.io/gear-dapps/gear-env:stable bash
+    docker run --rm --name gear-env --platform linux/amd64 -itd ghcr.io/gear-foundation/gear-env:stable bash
     ```
 
-2. Prepare smart contract for building (here we use [`app`](https://github.com/gear-dapps/app) for example):
+2. Prepare smart contract for building (here we use [`app`](https://github.com/gear-foundation/app) for example):
 
     ```shell
-    git clone https://github.com/gear-dapps/app.git --depth 1
+    git clone https://github.com/gear-foundation/app.git --depth 1
     docker cp ./app gear-env:/root
     ```
 
@@ -51,7 +51,16 @@ Development environment for building smart contracts.
 
 # Contents
 
-## [v1.1](https://github.com/gear-dapps/gear-env/pkgs/container/gear-env/98312120?tag=1.1) (latest stable)
+## v1.2 (latest stable)
+
+- Based on Ubuntu 22.04 LTS
+- Stable Rust toolchain: `v1.70.0` (`90c541806 2023-05-31`)
+- Nightly Rust toolchain: `v1.71.0-nightly` (`f5559e338 2023-04-24`)
+- Node.js: `v18.16.1`
+- Yarn: `v1.22.19`
+- Gear node binary: `v0.2.2-946ac47439c`
+
+## v1.1
 
 - Based on Ubuntu 22.04 LTS
 - Stable Rust toolchain: `v1.70.0` (`90c541806 2023-05-31`)
@@ -60,7 +69,7 @@ Development environment for building smart contracts.
 - Yarn: `v1.22.19`
 - Gear node binary: `v0.1.6-78dfa07ed34`
 
-## [v1.0](https://github.com/gear-dapps/gear-env/pkgs/container/gear-env/93962349?tag=1.0)
+## v1.0
 
 - Based on Ubuntu 22.04 LTS
 - Rust toolchain: `v1.69` (`stable`) and `v1.70.0-nightly` (`2023-03-14`)
@@ -71,7 +80,7 @@ Development environment for building smart contracts.
 # Build and run Docker container locally
 
 ```shell
-git clone https://github.com/gear-dapps/gear-env.git
+git clone https://github.com/gear-foundation/gear-env.git
 cd gear-env
 ```
 

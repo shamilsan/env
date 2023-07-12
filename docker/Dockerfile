@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM --platform=linux/amd64 ubuntu:22.04
 
 ARG NIGHTLY_TOOLCHAIN_VERSION=2023-04-25
 WORKDIR /root
@@ -30,5 +30,5 @@ RUN apt install -y nodejs
 RUN npm install --global yarn
 
 # Install Gear node binary
-RUN curl https://get.gear.rs/vara-testnet-v1.1-x86_64-unknown-linux-gnu.tar.xz | tar -xJC /usr/bin
+RUN curl https://get.gear.rs/vara-testnet-v1.2-x86_64-unknown-linux-gnu.tar.xz | tar -xJC /usr/bin
 ENV GEAR_NODE_PATH=/usr/bin/gear
