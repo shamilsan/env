@@ -71,7 +71,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          repository: gear-foundation/dapps-app
+          repository: gear-foundation/dapp-template
 
       - name: List versions
         run: |

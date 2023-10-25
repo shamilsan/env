@@ -13,23 +13,23 @@ Development environment for building smart contracts.
     docker run --rm --name gear-env -itd ghcr.io/gear-foundation/gear-env:stable bash
     ```
 
-2. Prepare smart contract for building (here we use [`app`](https://github.com/gear-foundation/app) for example):
+2. Prepare smart contract for building (here we use [`dapp-template`](https://github.com/gear-foundation/dapp-template) for example):
 
     ```shell
-    git clone https://github.com/gear-foundation/app.git --depth 1
-    docker cp ./app gear-env:/root
+    git clone https://github.com/gear-foundation/dapp-template.git --depth 1
+    docker cp ./dapp-template gear-env:/root
     ```
 
 3. Build smart contract on the Docker container:
 
     ```shell
-    docker exec -itw /root/app gear-env cargo build --release
+    docker exec -itw /root/dapp-template gear-env cargo build --release
     ```
 
 4. Copy build artifacts back to the local machine:
 
     ```shell
-    docker cp gear-env:/root/app/target/wasm32-unknown-unknown/release/. ./
+    docker cp gear-env:/root/dapp-template/target/wasm32-unknown-unknown/release/. ./
     ```
 
 5. Stop the Docker container after using:
