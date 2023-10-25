@@ -10,18 +10,7 @@ Development environment for building smart contracts.
 
     ```shell
     docker pull ghcr.io/gear-foundation/gear-env:stable
-    ```
-
-    Linux / macOS x86:
-
-    ```shell
     docker run --rm --name gear-env -itd ghcr.io/gear-foundation/gear-env:stable bash
-    ```
-
-    macOS M-series (ARM):
-
-    ```shell
-    docker run --rm --name gear-env --platform linux/amd64 -itd ghcr.io/gear-foundation/gear-env:stable bash
     ```
 
 2. Prepare smart contract for building (here we use [`app`](https://github.com/gear-foundation/app) for example):
@@ -51,7 +40,16 @@ Development environment for building smart contracts.
 
 # Contents
 
-## v1.2 (latest stable)
+## v1.3 (latest stable)
+
+- Based on Ubuntu 22.04 LTS
+- Stable Rust toolchain: `v?` (`? ?`)
+- Nightly Rust toolchain: `v?` (`? 2023-10-13`)
+- Node.js: `v?`
+- Yarn: `v?`
+- Gear node binary: `v?`
+
+## v1.2
 
 - Based on Ubuntu 22.04 LTS
 - Stable Rust toolchain: `v1.70.0` (`90c541806 2023-05-31`)
@@ -84,18 +82,9 @@ git clone https://github.com/gear-foundation/gear-env.git
 cd gear-env
 ```
 
-Linux / macOS x86:
-
 ```shell
 docker build -t gear-env docker
 docker run --rm --name gear-env -itd gear-env bash
-```
-
-macOS M-series (ARM):
-
-```shell
-docker build --platform linux/amd64 -t gear-env docker
-docker run --rm --name gear-env --platform linux/amd64 -itd gear-env bash
 ```
 
 # License
