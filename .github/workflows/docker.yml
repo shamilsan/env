@@ -81,8 +81,5 @@ jobs:
           yarn --version
           gear --version
 
-      - name: Run `app` tests
-        run: make full-test
-
-      - name: Build the `app`
-        run: make build
+      - name: Run `dapp-template` tests
+        run: cargo xtask ci
