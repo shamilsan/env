@@ -40,7 +40,7 @@ Development environment for building smart contracts.
 
 # Contents
 
-## v1.3 (latest stable)
+## v1.4 (latest stable)
 
 - Based on Ubuntu 22.04 LTS
 - Stable Rust toolchain: `v1.73.0` (`cc66ad468 2023-10-03`)
