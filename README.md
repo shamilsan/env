@@ -10,37 +10,26 @@ Development environment for building smart contracts.
 
     ```shell
     docker pull ghcr.io/gear-foundation/gear-env:stable
-    ```
-
-    Linux / macOS x86:
-
-    ```shell
     docker run --rm --name gear-env -itd ghcr.io/gear-foundation/gear-env:stable bash
     ```
 
-    macOS M-series (ARM):
+2. Prepare smart contract for building (here we use [`dapp-template`](https://github.com/gear-foundation/dapp-template) for example):
 
     ```shell
-    docker run --rm --name gear-env --platform linux/amd64 -itd ghcr.io/gear-foundation/gear-env:stable bash
-    ```
-
-2. Prepare smart contract for building (here we use [`app`](https://github.com/gear-foundation/app) for example):
-
-    ```shell
-    git clone https://github.com/gear-foundation/app.git --depth 1
-    docker cp ./app gear-env:/root
+    git clone https://github.com/gear-foundation/dapp-template.git --depth 1
+    docker cp ./dapp-template gear-env:/root
     ```
 
 3. Build smart contract on the Docker container:
 
     ```shell
-    docker exec -itw /root/app gear-env cargo build --release
+    docker exec -itw /root/dapp-template gear-env cargo build --release
     ```
 
 4. Copy build artifacts back to the local machine:
 
     ```shell
-    docker cp gear-env:/root/app/target/wasm32-unknown-unknown/release/. ./
+    docker cp gear-env:/root/dapp-template/target/wasm32-unknown-unknown/release/. ./
     ```
 
 5. Stop the Docker container after using:
@@ -51,7 +40,16 @@ Development environment for building smart contracts.
 
 # Contents
 
-## v1.2 (latest stable)
+## v1.4 (latest stable)
+
+- Based on Ubuntu 22.04 LTS
+- Stable Rust toolchain: `v1.73.0` (`cc66ad468 2023-10-03`)
+- Nightly Rust toolchain: `v1.75.0-nightly` (`fcab24817 2023-10-13`)
+- Node.js: `v18.17.1`
+- Yarn: `v1.22.19`
+- Gear node binary: `v1.0.1-a3fe307bd8e`
+
+## v1.2
 
 - Based on Ubuntu 22.04 LTS
 - Stable Rust toolchain: `v1.70.0` (`90c541806 2023-05-31`)
@@ -84,18 +82,9 @@ git clone https://github.com/gear-foundation/gear-env.git
 cd gear-env
 ```
 
-Linux / macOS x86:
-
 ```shell
 docker build -t gear-env docker
 docker run --rm --name gear-env -itd gear-env bash
-```
-
-macOS M-series (ARM):
-
-```shell
-docker build --platform linux/amd64 -t gear-env docker
-docker run --rm --name gear-env --platform linux/amd64 -itd gear-env bash
 ```
 
 # License
