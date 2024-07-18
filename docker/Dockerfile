@@ -5,7 +5,7 @@ WORKDIR /root
 
 # Install prerequisites
 RUN apt update -y && apt upgrade -y
-RUN apt install -y build-essential cmake curl git xz-utils wget
+RUN apt install -y build-essential cmake curl git xz-utils wget binaryen
 
 # Install Rust and toolchains
 RUN wget https://sh.rustup.rs/rustup-init.sh
