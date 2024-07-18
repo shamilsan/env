@@ -14,7 +14,6 @@ RUN ./rustup-init.sh -y
 ENV PATH="/root/.cargo/bin:$PATH"
 RUN rustup default $RUST_TOOLCHAIN_VERSION
 RUN rustup target add wasm32-unknown-unknown
-RUN rustup toolchain install --component llvm-tools-preview
 RUN rm -f rustup-init.sh
 ENV CARGO_NET_GIT_FETCH_WITH_CLI=true
 ENV CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
