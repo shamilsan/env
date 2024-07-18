@@ -27,7 +27,7 @@ jobs:
 
       - name: Build and push the PR's image
         if: github.event_name == 'pull_request'
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: docker
           push: true
@@ -35,7 +35,7 @@ jobs:
 
       - name: Build and push the latest image (master)
         if: github.event_name == 'push' && endsWith(github.ref, 'master')
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: docker
           push: true
@@ -52,7 +52,7 @@ jobs:
 
       - name: Build and push the stable image (tag)
         if: github.event_name == 'push' && !endsWith(github.ref, 'master')
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: docker
           push: true
@@ -75,8 +75,7 @@ jobs:
 
       - name: List versions
         run: |
-          rustc +stable --version
-          rustc +nightly --version
+          rustc --version
           node --version
           yarn --version
           gear --version
